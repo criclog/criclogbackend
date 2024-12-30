@@ -1,5 +1,6 @@
 const market = require ("../models/market.model");
 
+
 const createMarket = async (req,res) => {
     try {
         let marketData = req.body;
@@ -9,7 +10,7 @@ const createMarket = async (req,res) => {
         };
         const saveData = await market.create(newmarketData);
         console.log(saveData);
-        res.json(saveData);
+        res.json({saveData, message:'product added successfully'});
     } catch (error) {
         res.json({Error:error.message})
     }
@@ -36,4 +37,5 @@ const getMarketById = async (req, res) => {
 };
 
 
-module.exports = {createMarket ,getMarketdataall,getMarketById};
+
+module.exports = {createMarket ,getMarketdataall,getMarketById,};

@@ -22,7 +22,7 @@ const auth1Schema = new mongoose.Schema({
         type:String,
     },
     
-   mobileNo:{
+    mobileNo:{
     type:Number,
    } ,
 })

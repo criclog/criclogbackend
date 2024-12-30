@@ -20,7 +20,9 @@ const signup= async(req,res)=>{
         const hash= await bcrypt.hash(password,10)
           let data={
             password:hash,
-            ...userData
+            userName: userData.userName,
+            email: userData.email,
+            mobileNo: userData.mobileNo
           }
          
        
@@ -63,7 +65,35 @@ const signup= async(req,res)=>{
  }
  }
 
+ const putpassword = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Check if admin exists
+        const existingAdmin = await auth1.findOne({ email });
+        if (!existingAdmin) {
+            return res.status(404).json({ message: "Data not found" });
+        }
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Update admin data
+        const updateData = { password: hashedPassword, email };
+        const updatedAdmin = await auth1.updateOne({ email }, updateData);
+
+        return res.json({ updatedAdmin, message: "Password updated successfully" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+
+
+
 module.exports={
    signup,
-   signin
+   signin,
+   putpassword
 }

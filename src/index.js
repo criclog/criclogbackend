@@ -4,6 +4,9 @@ const auth1Route=require("./routes/auth1.routes")
 const adminauthRoute=require("./routes/adminauth.routes")
 const marketRoute = require("./routes/market.route");
 const cors = require("cors");
+const newsRoute = require("./routes/news.route");
+const internationalRoute = require("./routes/international.route");
+const LookingRouter=require("./routes/Looking.router")
 
 
 
@@ -15,8 +18,11 @@ app.use(express.json());
    connection()
    app.use('/v1', auth1Route)
    app.use('/admin', adminauthRoute)
+   app.use("/view", express.static("src/upload"))
    app.use(marketRoute);
-
+   app.use( newsRoute);
+   app.use(internationalRoute);
+   app.use("/",LookingRouter);
 
 
 

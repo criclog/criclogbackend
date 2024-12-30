@@ -10,4 +10,5 @@ router.get("/getallData", controller.getMarketdataall);
 router.get("/getMarketById", controller.getMarketById);
 
 
+
 module.exports = router;
