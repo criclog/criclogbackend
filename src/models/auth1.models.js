@@ -24,6 +24,7 @@ const auth1Schema = new mongoose.Schema({
     
     mobileNo:{
     type:Number,
+    minlength:10
    } ,
 })
 

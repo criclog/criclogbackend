@@ -7,6 +7,7 @@ const cors = require("cors");
 const newsRoute = require("./routes/news.route");
 const internationalRoute = require("./routes/international.route");
 const LookingRouter=require("./routes/Looking.router")
+const TournamentRouter=require("./routes/Tournament.routers")
 
 
 
@@ -22,7 +23,9 @@ app.use(express.json());
    app.use(marketRoute);
    app.use( newsRoute);
    app.use(internationalRoute);
-   app.use("/",LookingRouter);
+   app.use(LookingRouter);
+   app.use(TournamentRouter)
+
 
 
 

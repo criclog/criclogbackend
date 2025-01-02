@@ -88,6 +88,36 @@ const signup= async(req,res)=>{
     }
 };
 
+const putuserdata = async (req, res) => {
+    try {
+        const { email, updatedData } = req.body;
+
+        // Validate inputs
+        if (!updatedData || typeof updatedData !== "object") {
+            return res.status(400).json({ message: "Updated data is required" });
+        }
+
+        // Check if user exists
+        const userData = await auth1.findOne({ email });
+        if (!userData) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Update user data
+        const updateResult = await auth1.updateOne({ email }, { $set: updatedData });
+        if (updateResult.modifiedCount === 0) {
+            return res.status(304).json({ message: "No changes made to the data" });
+        }
+
+        return res.status(200).json({ message: "User data updated successfully" });
+    } catch (err) {
+        console.error("Error updating user data:", err);
+        res.status(500).json({ error: "An internal server error occurred" });
+    }
+};
+
+
+
 
 
 
@@ -95,5 +125,6 @@ const signup= async(req,res)=>{
 module.exports={
    signup,
    signin,
-   putpassword
+   putpassword,
+   putuserdata
 }
