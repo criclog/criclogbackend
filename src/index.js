@@ -8,6 +8,16 @@ const newsRoute = require("./routes/news.route");
 const internationalRoute = require("./routes/international.route");
 const LookingRouter=require("./routes/Looking.router")
 const TournamentRouter=require("./routes/Tournament.routers")
+const matchliveRoute = require("./routes/matchlive.route");
+const matchRoute = require("./routes/match.route")
+const playerofmatchRoute = require("./routes/playerofmatch.routers")
+const Commentary = require("./routes/Commertary.routes")
+const bowlingRoute = require("./routes/bowlingdata.route")
+const bowlingData2Route = require("./routes/bowlingdata2.route");
+
+const battingData1Route = require("./routes/battingdata1.route");
+
+const battingData2Route = require("./routes/battingdata2.route");
 
 
 
@@ -24,12 +34,17 @@ app.use(express.json());
    app.use( newsRoute);
    app.use(internationalRoute);
    app.use(LookingRouter);
-   app.use(TournamentRouter)
+   app.use(TournamentRouter);
+   app.use(matchliveRoute);
+   app.use(matchRoute);
+   app.use(playerofmatchRoute);
+   app.use(Commentary);
+   app.use(bowlingData2Route);
 
-
-
-
-
+   app.use(battingData1Route);
+   
+   app.use(battingData2Route);
+   app.use(bowlingRoute );
 
 
 

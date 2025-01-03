@@ -74,8 +74,6 @@ const  getallTournament=async(req,res)=>{
               const oldFilePath = path.join(existingtournaments.destination, existingtournaments.filename);
               if (fs.existsSync(oldFilePath)) {
                 fs.unlinkSync(oldFilePath);
-              } else {
-                console.log(`File not found: ${oldFilePath}`);
               }
             }
         
