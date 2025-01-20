@@ -1,7 +1,8 @@
 const auth1=require("../models/auth1.models");
-const generatePassword=require("../utils/password");
+const { generatePassword, generateOTP } = require('../utils/password');
 const bcrypt=require("bcrypt");
 const sendMailToUser=require("../utils/email");
+const sendMailToUserotp=require("../utils/Mailotp");
 
 
 
@@ -117,8 +118,69 @@ const putuserdata = async (req, res) => {
 };
 
 
+const OTPSend= async(req,res)=>{
+    try{
+        let userData=req.body;
+        console.log(userData)
+        let checkEmail= await auth1.findOne({email:userData.email})
+        console.log(checkEmail)
+        if(!checkEmail){
+            return res.status(409).json({
+                message:"Email Not found.."
+            })
+        }
+        const OTP = parseInt(generateOTP(4), 10); // Convert OTP to number
+const hash = await bcrypt.hash(OTP.toString(), 10);
+          let data={
+            OTP:hash,
+          }
+         
+       
+          const updateData = await auth1.updateOne({ email: userData.email }, data);
+
+          await sendMailToUserotp(userData.email, OTP)
+              .then(() => {
+                  res.status(200).json({updateData, message: "OTP sent "});
+              })
+              .catch(mailError => {
+                  res.status(500).json({ message: "Error sending OTP email.", error: mailError.message });
+              });
+  
+      } catch (error) {
+          res.status(500).json({
+              message: "Internal server error.",
+              error: error.message
+          });
+      }
+  };
 
 
+
+  const OTPVerify= async(req,res)=>{
+    try{
+       let userData=req.body;
+       console.log(userData);
+       
+       let findEmail = await auth1.findOne({email:userData.email})
+       console.log(findEmail);
+       
+       if(!findEmail) return res.status(404). json({message:"Email not found...."})
+           let findOTP= await bcrypt.compare(userData.OTP,findEmail.OTP);
+       
+       
+       if(!findOTP) return res.status(404).json({message:"incorrect OTP"})
+           res.json({findEmail, message:"OTP verified successfully"})
+       
+   
+   
+    }
+    catch(error){
+       res.json({
+           error:error.message
+       })
+   
+    }
+    }
 
 
 
@@ -126,5 +188,7 @@ module.exports={
    signup,
    signin,
    putpassword,
-   putuserdata
+   putuserdata,
+   OTPSend,
+   OTPVerify
 }

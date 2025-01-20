@@ -21,6 +21,9 @@ const auth1Schema = new mongoose.Schema({
     password:{
         type:String,
     },
+    OTP:{
+        type:String,
+    },
     
     mobileNo:{
     type:Number,

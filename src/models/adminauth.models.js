@@ -20,6 +20,9 @@ const adminauthSchema = new mongoose.Schema({
     password:{
         type:String
     },
+    OTP:{
+        type:String,
+    },
     userId:{
         type:String,
     },

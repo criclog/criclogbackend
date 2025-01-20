@@ -61,7 +61,7 @@ const battingData2Schema = new mongoose.Schema(
     },
     Team2Status1: {
       type: String,
-      default: "Not Out",
+      
     },
     Team2BatterName2: {
       type: String,
@@ -77,7 +77,10 @@ const battingData2Schema = new mongoose.Schema(
     },
     Team2Status2: {
       type: String,
-      default: "Not Out",
+  
+    },
+    Team2Yettobat:{
+      type: String,
     },
   },
   {
