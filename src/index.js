@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const cors = require("cors");
 const connection = require("./config/connection");
 
@@ -39,8 +38,6 @@ app.use(express.json()); // Parse JSON requests
 // Connect to database
 connection();
 
-// Serve static files from the 'build' directory (React app)
-app.use(express.static(path.join(__dirname, "build")));
 
 // API routes
 app.use("/v1", auth1Route);
@@ -60,10 +57,6 @@ app.use(bowlingData2Route);
 app.use(battingData1Route);
 app.use(battingData2Route);
 
-// Handle React routing (serve index.html for unrecognized routes)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 // Start the server
 app.listen(port, () => {
