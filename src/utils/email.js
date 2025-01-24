@@ -9,6 +9,7 @@ const sendMailToUser = async (email, password, userName) => {
         pass:"caob divm pbax opwc"
       }
     });
+    
 
     const mailOption = {
       from: "rubypandu4@gmail.com",
