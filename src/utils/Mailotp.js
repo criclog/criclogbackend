@@ -5,13 +5,13 @@ const sendMailToUserotp = async (email, OTP) => {
     const transport = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user:"rubypandu4@gmail.com",
-        pass:"caob divm pbax opwc"
+        user:"criclog001@gmail.com",
+        pass:"azgq emui mybr ukiw"
       }
     });
 
     const mailOption = {
-      from: "rubypandu4@gmail.com",
+      from: "criclog001@gmail.com",
       to: email,
       subject: "Welcome to our website",
       html: `

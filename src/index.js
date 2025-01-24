@@ -1,4 +1,4 @@
-const express = require ("express")
+const express = require("express")
 const connection = require("./config/connection")
 const auth1Route=require("./routes/auth1.routes")
 const adminauthRoute=require("./routes/adminauth.routes")
@@ -22,7 +22,10 @@ const battingData2Route = require("./routes/battingdata2.route");
 
 
 const app= express()
-app.use(cors('*'));
+app.use(cors({
+    origin: ["https://criclog-admin87.web.app", "https://criclog057.web.app"],
+    methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"]
+}));
 
 app.use(express.json());
 
