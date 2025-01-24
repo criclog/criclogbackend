@@ -1,4 +1,4 @@
-const express = require("express")
+const express = require ("express")
 const connection = require("./config/connection")
 const auth1Route=require("./routes/auth1.routes")
 const adminauthRoute=require("./routes/adminauth.routes")
