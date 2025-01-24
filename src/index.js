@@ -27,6 +27,7 @@ app.use(cors({
     methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"]
 }));
 
+
 app.use(express.json());
 
    connection()
