@@ -5,7 +5,8 @@
   "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "start": "nodemon src/index.js",
-  "build": "echo \"No build step needed for this plain Node.js project.\""
+  "build": "echo \"No build step needed for this plain Node.js project.\"",
+  "deploy": "npm run build && firebase deploy"
 },
   "author": "",
   "license": "ISC",
