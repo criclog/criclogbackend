@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const connection = require("./config/connection");
+const path = require("path");
 
 // Route imports
 const auth1Route = require("./routes/auth1.routes");
@@ -29,6 +30,7 @@ app.use(
     origin: [
       "https://criclog-admin87.web.app",
       "https://criclog057.web.app",
+      "http://localhost:3000"
     ],
     methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
   })
@@ -42,7 +44,7 @@ connection();
 // API routes
 app.use("/v1", auth1Route);
 app.use("/admin", adminauthRoute);
-app.use("/view", express.static("src/upload"));
+app.use("/view", express.static(path.join(__dirname,"/upload")));
 app.use(marketRoute);
 app.use(newsRoute);
 app.use(internationalRoute);
@@ -56,6 +58,10 @@ app.use(bowlingRoute);
 app.use(bowlingData2Route);
 app.use(battingData1Route);
 app.use(battingData2Route);
+
+app.get('/', (req, res) => {
+  res.status(200).json('Hello world');
+});
 
 
 // Start the server
